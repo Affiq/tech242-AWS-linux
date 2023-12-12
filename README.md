@@ -34,5 +34,5 @@ Commands:
 * Changes in Local IP Address
 
 ## Using Linux
-* Linux
+* [Linux commands](Linux)
 
