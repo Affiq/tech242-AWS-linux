@@ -12,6 +12,7 @@
 Tips:
 * **NEVER** push any credentials to GitHub, this includes .pem files and .ssh folders
 * Be aware of how you configure a VM - these may incur additional costs
+* Be wary of Linux's ```rm -rf``` command
 
 Commands:
 * Ctrl + Shift + P -> Command Menu
@@ -21,7 +22,8 @@ Commands:
 
 ## All about Cloud
 * [Learn Core Cloud Concepts](WhatIsCloud)
-* AWS Concepts
+* [Learn Basic of AWS](AWS)
+* Cloud Architecture
 
 ## SSH folder and .pem
 * [Learn how to store .pem](StoringSSH)
