@@ -1,5 +1,25 @@
 # What is the Cloud?
 
+
+- [What is the Cloud?](#what-is-the-cloud)
+  - [Definition](#definition)
+  - [NIST Definition:](#nist-definition)
+  - [History of Cloud Computing.](#history-of-cloud-computing)
+  - [Cloud - 4 Service Types:](#cloud---4-service-types)
+  - [4 Types of Cloud Deployment Models:](#4-types-of-cloud-deployment-models)
+  - [What can they do](#what-can-they-do)
+  - [Essential Characteristics](#essential-characteristics)
+  - [Advantages of Adopting Cloud (Business Standpoint):](#advantages-of-adopting-cloud-business-standpoint)
+  - [Disadvantages of Adopting Cloud (Business Standpoint):](#disadvantages-of-adopting-cloud-business-standpoint)
+  - [Cloud Providers:](#cloud-providers)
+    - [Amazon Web Services (AWS)](#amazon-web-services-aws)
+    - [Microsoft Azure](#microsoft-azure)
+    - [Google Cloud Platform (GCP)](#google-cloud-platform-gcp)
+  - [Four Pillars of DevOps](#four-pillars-of-devops)
+  - [OPEX vs CAPEX](#opex-vs-capex)
+
+## Definition
+
  Instead of owning and maintaining physical servers and infrastructure, developers and organizations can use resources and services provided by a third-party cloud service provider.
 
 
@@ -24,6 +44,8 @@ Throughout the 2010s, cloud computing witnessed rapid adoption, diversification 
 * Software as a Service (SaaS): SaaS delivers software applications over the internet. Users can access these applications through a web browser without needing to install or maintain any software on their local devices.
 
 * Function as a Service (FaaS) / Serverless Computing: Allows developers to run individual functions or pieces of code in response to events without managing the infrastructure. Users only pay for the actual compute resources consumed during the execution of these functions.
+
+![Alt text](../READMEImages/CloudServiceDiff.png)
 
 </br>
 
@@ -97,7 +119,7 @@ Throughout the 2010s, cloud computing witnessed rapid adoption, diversification 
 - Measured Service - (Management)
 - Self-Service - On-demand self-service
 
-### Advantages of Adopting Cloud (Business Standpoint):
+## Advantages of Adopting Cloud (Business Standpoint):
 
 - **Cost Savings:** Cloud eliminates upfront hardware costs and allows pay-as-you-go pricing.
 - **Scalability and Flexibility:** Easily scale resources based on demand for efficient workload management.
@@ -106,7 +128,7 @@ Throughout the 2010s, cloud computing witnessed rapid adoption, diversification 
 - **Innovation and Technological Edge:** Cloud providers offer cutting-edge technologies for competitive advantage.
 - **Security and Compliance:** Reputable providers invest in robust security measures and compliance certifications.
 
-### Disadvantages of Adopting Cloud (Business Standpoint):
+## Disadvantages of Adopting Cloud (Business Standpoint):
 
 - **Security Concerns:** Entrusting data to a third party raises security considerations.
 - **Dependency on Service Providers:** Reliability depends on the performance of chosen providers.
@@ -115,8 +137,53 @@ Throughout the 2010s, cloud computing witnessed rapid adoption, diversification 
 - **Potential for Vendor Lock-In:** Proprietary technologies may lead to dependency on specific providers.
 - **Downtime and Reliability:** Cloud services, despite high reliability, are not immune to downtime.
 
+## Cloud Providers:
 
+### Amazon Web Services (AWS)
 
+**Advantages:**
+- Largest and most mature cloud provider.
+- Extensive range of services.
+- Global infrastructure with data centers worldwide.
+- Active user community and rich ecosystem.
 
+### Microsoft Azure
 
+**Advantages:**
+- Seamless integration with Microsoft products.
+- Strong hybrid cloud capabilities.
+- Well-suited for enterprise-scale deployments.
+
+### Google Cloud Platform (GCP)
+
+**Advantages:**
+- Strengths in data analytics, machine learning, and big data services.
+- Extensive global network infrastructure.
+- Expertise in containerization and Kubernetes.
+
+## Four Pillars of DevOps
+
+**Collaboration:**
+Encourages open communication and collaboration among development, operations, and QA teams.
+
+**Automation:**
+Emphasizes the use of automation tools to streamline and accelerate the software delivery process.
+
+**Continuous Integration (CI):**
+Involves frequent integration of code changes into a repository, to detect and address issues early in development.
+
+**Continuous Delivery/Continuous Deployment (CD):**
+Focuses on continuously delivering and, in some cases, deploying software changes to production. Ensures software is always in a deployable state.
+
+## OPEX vs CAPEX
+
+**OPEX (Operating Expenditure):**
+- Represents ongoing, day-to-day operational costs.
+- Includes recurring expenses deducted in the year incurred.
+
+**CAPEX (Capital Expenditure):**
+- Involves investments in long-term assets.
+- Capitalized and depreciated over the asset's useful life.
+
+In summary, OPEX covers immediate operational expenses, while CAPEX represents long-term investments with costs spread over time.
 

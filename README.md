@@ -1,24 +1,34 @@
 # Week 1 - AWS and Linux
 
 - [Week 1 - AWS and Linux](#week-1---aws-and-linux)
-  - [Day 1](#day-1)
-  - [External Cloud Docs](#external-cloud-docs)
-  - [Day 2](#day-2)
+  - [General](#general)
+  - [All about Cloud](#all-about-cloud)
+  - [SSH folder and .pem](#ssh-folder-and-pem)
+  - [Using AWS](#using-aws)
 
 
-## Day 1
+## General
+Tips:
+* **NEVER** push any credentials to GitHub, this includes .pem files and .ssh folders
+* Be aware of how you configure a VM - these may incur additional costs
+
 Commands:
 * Ctrl + Shift + P -> Command Menu
 * Ctrl + Shift + V -> Preview Markdown
+* Git - Shift + Insert -> Paste
+* * Command Menu -> Create Table of Contents
 
-![Alt text](READMEImages/VS-Code-Project-Structure-Capture.PNG)
+## All about Cloud
+[Learn Core Cloud Concepts](WhatIsCloud)
+AWS Concepts
 
-## External Cloud Docs
-[What is Cloud?](WhatIsCloud)
+## SSH folder and .pem
+[Learn how to store .pem](StoringSSH)
 
-Storing SSH keys:
+## Using AWS
+[Learn how to create a VM](CreatingAVM)
+Starting and Stopping Virtual Machines
+Changes in Local IP Address
 
-
-## Day 2
 
 ``
