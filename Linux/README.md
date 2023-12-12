@@ -42,6 +42,11 @@ Linux navigation uses navigation commands similar to the Git BASH terminal. Thes
 * ```file <targetfile>``` Gives detail of file type`
 * ```history``` History of executed commands
 * ```!num``` Repeat a command in the history stack
+* ```head -l <filename>``` Shows Head (1st line) of file
+* ```tail -l <filename>``` Shows Tail (last line) of file
+* ```nl <filename>``` Numbered Lines display of text file
+* ```cat <filename> | grep <pattern> ``` Searches for pattern inside the file
+
   
 ## Creatings, Writing and Deleting Files
 * ```mkdir <dirname>``` Make Directory 
@@ -50,6 +55,9 @@ Linux navigation uses navigation commands similar to the Git BASH terminal. Thes
 * ```rm <filename>``` Remove file
 * ```rmdir <directoryname>``` Remove directory
 * ```cp <filename>``` Copies filename
+* ```nano <filename>``` Opens up a text editor for a file
   
-
+  
+## Installation
+* ```sudo apt install <packagename>``` Download as superuser
 
