@@ -10,7 +10,7 @@
     - [Components](#components)
   - [Process Commands](#process-commands)
   - [Privileged Killing](#privileged-killing)
-- [Redirecting](#redirecting)
+  - [Redirecting](#redirecting)
 
 
 ## Package Management
@@ -43,42 +43,44 @@
 
 ```
 ### Response
-* Once we have tested and defined our shell program is fully functional, we can also observe that our program is not very feedback friendly. The use of well placed echo commands can notify the end user of some input. Making space of blank line echos can also help chunk particular command responses. This helps us produce our final shell which looks like this.
+* Once we have tested and defined our shell program is fully functional, we can also observe that our program is not very feedback friendly. The use of well placed echo commands can notify the end user of some input. Making space of blank line echos can also help chunk particular command responses. Colours can also help indicate behaviour of the file. This helps us produce our final shell which looks like this.
 
 ```
 #!/bin/bash
+GREEN='\e[32m'
+NO_COLOR='\e[0m'
 
 # update latest packages
 echo "Updating..."
 sudo apt update -y
-echo "Updating: Done"
+echo -e "Updating: ${GREEN}Done${NO_COLOR}"
 echo ""
 
 # upgrade lastest packages
 echo "Upgrading..."
 sudo apt upgrade -y
-echo "Upgrading: Done"
+echo -e "Upgrading: ${GREEN}Done${NO_COLOR}"
 echo ""
 
 # install nginx webserver
 echo "Installing..."
 sudo apt install nginx -y
-echo "Installing: Done"
+echo -e "Installing: ${GREEN}Done${NO_COLOR}"
 echo ""
 
 # restart nginx
 echo "Restarting..."
 sudo systemctl restart nginx
-echo "Restarting: Done"
+echo -e "Restarting: ${GREEN}Done${NO_COLOR}"
 echo ""
 
 # enable nginx
 echo "Enabling..."
 sudo systemctl enable nginx
-echo "Enabling: Done"
+echo -e "Enabling: ${GREEN}Done${NO_COLOR}"
 echo ""
-
 ```
+
 
 This allows us to achieve a BASH script which is both functional and terminal responsive.
 Screenshot
@@ -109,7 +111,7 @@ Screenshot
 
 * Only when using the sudo command can the process be killed.
 
-# Redirecting
+## Redirecting
 * The > operator can be used to redirect the output of a command to a file. For example,
   ```echo "Here I go" > output.txt```, either creating a new file, or overwriting the current file.
 * By replacing it with the >> operator, this can be used to append to the file instead of overwriting it.

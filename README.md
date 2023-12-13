@@ -39,3 +39,4 @@ Commands:
 ## Using Linux
 * [Linux navigation commands](Linux)
 * [Linux process commands](Linux2)
+* [File ownership & management](FileOwnership&Management)
