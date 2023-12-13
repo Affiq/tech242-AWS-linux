@@ -10,9 +10,11 @@
 
 ## General
 Tips:
-* **NEVER** push any credentials to GitHub, this includes .pem files and .ssh folders
+* **NEVER** push any credentials to GitHub, this includes .pem files and .ssh folders - doing so could mean being picked by Amazons vulnerability scanning as well as potential for misuse, incurring danger or financial ramifications
 * Be aware of how you configure a VM - these may incur additional costs
-* Be wary of Linux's ```rm -rf``` command
+* Be wary of Linux's ```rm -rf <targetfile>``` command - this is a force remove and can potentially allow the removal of important files or potentially the whole system when used incorrectly
+* Be wary of Linux's ```pkill -9 <pid>``` command - this brute force kill should be minimised and it can potentially cause processes to be orphaned and turned into zombie processes.
+* Be careful when copying and pasting commands in a terminal - there is no undo feature and it is a potential attack vector for malicious parties to inject code.
 
 Commands:
 * Ctrl + Shift + P -> Command Menu
@@ -31,8 +33,9 @@ Commands:
 ## Using AWS
 * [Learn how to create a VM](CreatingAVM)
 * Starting and Stopping Virtual Machines
+* Connecting to a Virtual Machine
 * Changes in Local IP Address
 
 ## Using Linux
-* [Linux commands](Linux)
-
+* [Linux navigation commands](Linux)
+* [Linux process commands](Linux2)
