@@ -9,6 +9,8 @@
     - [Theory](#theory)
     - [Components](#components)
   - [Process Commands](#process-commands)
+  - [Privileged Killing](#privileged-killing)
+- [Redirecting](#redirecting)
 
 
 ## Package Management
@@ -99,3 +101,16 @@ Screenshot
 
 ## Process Commands
 * ```ps aux``` Extremely detailed
+
+## Privileged Killing
+* When starting sleep processes as sudo users, regular users are not able to kill it, even with the brute force command. They are typically met with the following response. 
+
+Screenshot
+
+* Only when using the sudo command can the process be killed.
+
+# Redirecting
+* The > operator can be used to redirect the output of a command to a file. For example,
+  ```echo "Here I go" > output.txt```, either creating a new file, or overwriting the current file.
+* By replacing it with the >> operator, this can be used to append to the file instead of overwriting it.
+*  ```echo "Here I go" >> output.txt``
