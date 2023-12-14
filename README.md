@@ -1,12 +1,22 @@
 # Week 1 - AWS and Linux
 
 - [Week 1 - AWS and Linux](#week-1---aws-and-linux)
+  - [Tools Used](#tools-used)
   - [General](#general)
   - [All about Cloud](#all-about-cloud)
   - [SSH folder and .pem](#ssh-folder-and-pem)
   - [Using AWS](#using-aws)
   - [Using Linux](#using-linux)
 
+## Tools Used
+For this tutorial the following technologies are used:
+* Microsoft Visual Code: Documentation
+* Markdown All in One plugin: Git-MarkDown Style Docmentation 
+* AWS EC2: Creating & Configuring Virtual Machine instance
+* Git BASH: Navigating local machine, VM Connection
+* BASH: Executing commands in Linux inside VM
+* Chat GPT: Surface-level information gathering
+* Google Bard: Surface-level information gathering
 
 ## General
 Tips:
