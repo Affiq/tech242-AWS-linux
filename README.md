@@ -15,7 +15,7 @@ For this tutorial the following technologies are used:
 * AWS EC2: Creating & Configuring Virtual Machine instance
 * Git BASH: Navigating local machine, VM Connection
 * BASH: Executing commands in Linux inside VM
-* Chat GPT: Surface-level information gathering
+* Chat GPT: Naive information gathering, BASH assistance, troubleshooting
 * Google Bard: Surface-level information gathering
 
 ## General
@@ -25,6 +25,7 @@ Tips:
 * Be wary of Linux's ```rm -rf <targetfile>``` command - this is a force remove and can potentially allow the removal of important files or potentially the whole system when used incorrectly
 * Be wary of Linux's ```pkill -9 <pid>``` command - this brute force kill should be minimised and it can potentially cause processes to be orphaned and turned into zombie processes.
 * Be careful when copying and pasting commands in a terminal - there is no undo feature and it is a potential attack vector for malicious parties to inject code.
+* When using AI, be wary of out-of-date information and potential danger from lack of context.
 
 Commands:
 * Ctrl + Shift + P -> Command Menu
