@@ -1,6 +1,7 @@
 # Creating a Virtual Machine
 
 - [Creating a Virtual Machine](#creating-a-virtual-machine)
+  - [Goals:](#goals)
   - [Login:](#login)
   - [Creating an Instance of EC2:](#creating-an-instance-of-ec2)
   - [Configuring a new EC2:](#configuring-a-new-ec2)
@@ -10,6 +11,9 @@
     - [Key Pair Value](#key-pair-value)
     - [Security Groups](#security-groups)
     - [Confirmation](#confirmation)
+
+## Goals:
+We would like to safely create our first Amazon EC2 instance.
 
 ## Login:
 

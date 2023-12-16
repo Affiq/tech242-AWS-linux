@@ -1,5 +1,6 @@
 # More on Linux
 - [More on Linux](#more-on-linux)
+  - [Goals:](#goals)
   - [Package Management](#package-management)
   - [BASH Scripting](#bash-scripting)
     - [Creating a new BASH Script](#creating-a-new-bash-script)
@@ -13,6 +14,9 @@
   - [Redirecting](#redirecting)
 
 
+## Goals:
+We would like to learn about how to make a BASH script, as well as making a sample script that can automatically install and deploy a nginx server. We would also like to learn the what is a process and how to manage them.
+
 ## Package Management
 * Package files can be retrieved using ```sudo apt update -y```
 * Package files can be updated (which could cause potential errors) using ```sudo apt upgrade -y```
@@ -25,6 +29,7 @@
 ```
 #!/bin/bash
 ```
+
 ### Development Process
 * Typically when approaching BASH scripts, planning is required and so pseudocommands should be written down first to outline the main steps towards an end goal.
 * It is also wise to typically test each command individually to catch potential hangs or errors further down the line, such as adding a -y flag for some commands or a sudo prefix to enable access to some commands. In our given instance, we produce the following skeleton shell.
@@ -115,4 +120,4 @@ Screenshot
 * The > operator can be used to redirect the output of a command to a file. For example,
   ```echo "Here I go" > output.txt```, either creating a new file, or overwriting the current file.
 * By replacing it with the >> operator, this can be used to append to the file instead of overwriting it.
-*  ```echo "Here I go" >> output.txt``
+  ```echo "Here I go" >> output.txt```
