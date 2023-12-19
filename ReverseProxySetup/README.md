@@ -39,7 +39,7 @@ When you want Apache to use a configuration file from `sites-available`, you mov
 
 In essence, `sites-available` is a collection of options, and `sites-enabled` is the list of options currently in use by Apache.
 
-## Inside the sites-enabled directory
+## Redirecting with sites-enabled directory
 By default, inside the folder exists a config file named ```000-default.config```. The code inside should look like:
 ```
 <VirtualHost *:80>
@@ -58,6 +58,14 @@ We can add a redirect initiative to redirect the user not only to a specific URL
 ```
 
 Now we have manually configured a file to redirect to port 5000 for our server. The problem is that the IP can be dynamic and some finesse will be required to handle this change in dynamic IPs.
+
+## Using Proxy Pass with sites-active directory
+We can also use a number of proxy pass settings within the ```sites-active``` directory to perform port mapping. This can be done by adding the following 3 settings into the file.
+
+```
+
+```
+
 
 ## A Bash Script for Changing the Config
 
@@ -80,8 +88,9 @@ sudo systemctl reload apache2
 ```
 
 
-## Our New Bash File
-In addition to our old bash file, we have:
+## Naive BASH Script
+By combining the earlier Spring-Boot deployment setup along with the apache2 setup, we have a functioning BASH script to deploy both the Java applet and the reverse proxy.
+
 ```
 #!/bin/bash
 
@@ -129,8 +138,8 @@ mvn spring-boot:start
 sudo DEBIAN_FRONTEND=noninteractive apt install apache2 -y
 
 # Enable relevant apache proxy modules
-sudo a2enmod proxy -y
-sudo a2enmod proxy_http -y
+sudo a2enmod proxy
+sudo a2enmod proxy_http
 
 # Restart Apache 
 sudo systemctl restart apache2 
@@ -150,5 +159,133 @@ sudo sed -i "/Redirect/ s|.*|$REPLACEMENT_LINE|" /etc/apache2/sites-enabled/000-
 # Restart Apache
 sudo systemctl reload apache2
 
+
+```
+
+
+## Configuration File Modification Using SED
+We would like to create a code block that will modify the code block given that the settings are not yet configured. The first step is to first create our code that will inject the desired seetings into our 000-default.conf file.
+
+```
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+    # Injected settings
+    ProxyPreserveHost On
+    ProxyPass / http://localhost:5000/
+    ProxyPassReverse / http://localhost:5000/
+```
+
+We can then do this by formatting the following settings into one line, and use the SED command to look for the DocumentRoot line. The a\ flag before ProxyPreserveHost allows us to add the following lines rather than replace them.
+
+```
+    sudo sed -i '/DocumentRoot \/var\/www\/html/ a\ProxyPreserveHost On\nProxyPass \/ http:\/\/localhost:5000\/\nProxyPassReverse \/ http:\/\/localhost:5000\/\n' /etc/apache2/sites-available/000-default.conf
+```
+
+### Determining Configured or Not
+With the following settings in mind, it is trivial to determine whether our proxy is configured, if the following settings are not in the file then it has not yet been configured. Therefore, we can use grep to determine if the pattern exists in the file. Here we will choose an arbritrary line unique to these settings. It is important not to use ProxyPreserveHost as this is NOT unique to our specific configuration, and alternate configurations may interfere with this.
+
+```grep -q 'ProxyPass / http://localhost:5000/' /etc/apache2/sites-available/000-default.conf```
+
+We can further combine this into an if statement with an echo command to then determine if the proxy is configured using the following command:
+
+```
+if grep -q 'ProxyPass / http://localhost:5000/' /etc/apache2/sites-available/000-default.conf; then
+    # The string exists, so nothing to do
+    echo "Reverse proxy already configured."
+else
+    # reverse proxy not configured yet
+    echo "Reverse proxy NOT configured."
+fi
+```
+
+### Configuration Code Block
+Once we have manually tested the steps and are comfortable about our Configuration detection code block, we can then move the actual sed command into the code block to create our Configuration editor block. It is important to test this code block for the following cases:
+* When no configuration exists
+* When the configuration exists
+* When multiple configuration exists
+
+
+```
+if grep -q 'ProxyPass / http://localhost:5000/' /etc/apache2/sites-available/000-default.conf; then
+    # The string exists, so nothing to do
+    echo "Reverse proxy already configured."
+else
+    # reverse proxy not configured yet
+    echo "Reverse proxy NOT configured."
+    sudo sed -i '/DocumentRoot \/var\/www\/html/ a\ProxyPreserveHost On\nProxyPass \/ http:\/\/localhost:5000\/\nProxyPassReverse \/ http:\/\/localhost:5000\/\n' /etc/apache2/sites-available/000-default.conf
+fi
+```
+
+### End Result
+From here we create a BASH scripts that is functional as a singular BASH script. After running this in a fresh VM, we can then test this in the User Data of a fresh virtual machine before attempting to move this into an AMI.
+
+```
+#!/bin/bash
+
+# Update
+echo "Updating"
+sudo apt update -y
+echo ""
+
+# Upgrade
+echo "Upgrading"
+sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
+echo ""
+
+# Install maven
+echo "Installing Maven"
+sudo DEBIAN_FRONTEND=noninteractive apt install maven -y
+echo ""
+
+# Check maven install
+echo "Checking Maven Install:"
+mvn -version
+echo ""
+
+# Install JDK Java 17
+echo "Installing JDK 17"
+sudo DEBIAN_FRONTEND=noninteractive apt install openjdk-17-jdk -y
+echo ""
+
+# Check java version
+echo "Checking Java Install:"
+java -version
+echo ""
+
+# Clone App from Git
+git clone https://github.com/Affiq/tech242-jsonvorhees-app.git
+
+# CD into springapi folder
+cd tech242-jsonvorhees-app/jsonvoorhees-java-atlas-app/springapi/
+
+# Springboot start...
+mvn spring-boot:start
+
+# OUR NEW CODE
+# Nav back to root
+cd /
+
+# Install Apache2
+sudo DEBIAN_FRONTEND=noninteractive apt install apache2 -y
+
+# Enable relevant apache proxy modules
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+
+# Restart Apache 
+sudo systemctl restart apache2 
+
+# Edit config file if not configured
+if grep -q 'ProxyPass / http://localhost:5000/' /etc/apache2/sites-available/000-default.conf; then
+    # The string exists, so nothing to do
+    echo "Reverse proxy already configured."
+else
+    # reverse proxy not configured yet
+    echo "Reverse proxy NOT configured."
+    sudo sed -i '/DocumentRoot \/var\/www\/html/ a\ProxyPreserveHost On\nProxyPass \/ http:\/\/localhost:5000\/\nProxyPassReverse \/ http:\/\/localhost:5000\/\n' /etc/apache2/sites-available/000-default.conf
+fi
+
+# Restart Apache
+sudo systemctl reload apache2
 
 ```
