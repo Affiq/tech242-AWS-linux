@@ -15,6 +15,7 @@
     - [Amazon Web Services (AWS)](#amazon-web-services-aws)
     - [Microsoft Azure](#microsoft-azure)
     - [Google Cloud Platform (GCP)](#google-cloud-platform-gcp)
+  - [Cloud Provider Marketshare:](#cloud-provider-marketshare)
   - [Four Pillars of DevOps](#four-pillars-of-devops)
   - [OPEX vs CAPEX](#opex-vs-capex)
 
@@ -137,6 +138,7 @@ Throughout the 2010s, cloud computing witnessed rapid adoption, diversification 
 - **Potential for Vendor Lock-In:** Proprietary technologies may lead to dependency on specific providers.
 - **Downtime and Reliability:** Cloud services, despite high reliability, are not immune to downtime.
 
+
 ## Cloud Providers:
 
 ### Amazon Web Services (AWS)
@@ -160,6 +162,20 @@ Throughout the 2010s, cloud computing witnessed rapid adoption, diversification 
 - Strengths in data analytics, machine learning, and big data services.
 - Extensive global network infrastructure.
 - Expertise in containerization and Kubernetes.
+
+## Cloud Provider Marketshare:
+
+- **Amazon Web Services (AWS):**
+  - Market Share: 32% to 33% (2021)
+  - Position: Leading cloud service provider
+
+- **Microsoft Azure:**
+  - Market Share: 20% to 21% (2021)
+  - Position: Strong competitor to AWS
+
+- **Google Cloud Platform (GCP):**
+  - Market Share: 9% to 10% (2021)
+  - Position: Growing steadily, third-largest cloud provider
 
 ## Four Pillars of DevOps
 
