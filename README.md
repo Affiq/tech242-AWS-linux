@@ -7,9 +7,11 @@
   - [SSH folder and .pem](#ssh-folder-and-pem)
   - [Using AWS](#using-aws)
   - [Using Linux](#using-linux)
+  - [Other](#other)
 
 ## Tools Used
 For this tutorial the following technologies are used:
+
 Virtual Machine related:
 * AWS EC2: Creating & Configuring Virtual Machine instance
 * Git BASH: Navigating local machine, VM Connection
@@ -19,6 +21,12 @@ Virtual Machine related:
 Documentation:
 * Microsoft Visual Code: Documentation
 * Markdown All in One plugin: Git-MarkDown Style Docmentation 
+
+VM Main Tools:
+* Nginx: Web-server
+* Maven: Build and run web-server
+* Apache2: Reverse Proxying
+* MySQL-Server: Database-server
 
 Misc Tools:
 * Chat GPT: Naive information gathering, BASH assistance, troubleshooting
@@ -54,6 +62,7 @@ Commands:
 * Starting and Stopping Virtual Machines
 * Connecting to a Virtual Machine
 * Changes in Local IP Address
+* Removing AMIs
 
 ## Using Linux
 * [Navigation and Basics](Linux)
@@ -61,3 +70,8 @@ Commands:
 * [File ownership & management](FileOwnership&Management)
 * [File transfer & Automating Java App Deployment](Linux3)
 * [Reverse Proxying](ReverseProxySetup/README.md)
+* Two Tier Deployment
+
+## Other
+* [Quickstart BASH Scripts](QuickstartBash/README.md)
+* Blockers & Troubleshooting
