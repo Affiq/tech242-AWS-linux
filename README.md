@@ -60,7 +60,7 @@ Commands:
 ## Using AWS
 * [Learn how to create a VM](CreatingAVM)
 * [Starting, Stopping & Terminating VMs](StartStopVM)
-* Connecting to a Virtual Machine
+* [Connecting to a VM](ConnectingToVM)
 * Removing AMIs
 
 ## Using Linux
