@@ -5,10 +5,9 @@
   - [Nginx Server Setup](#nginx-server-setup)
   - [Spring-Boot Server Setup](#spring-boot-server-setup)
   - [Apache2 Reverse Proxy Setup](#apache2-reverse-proxy-setup)
-  - [SQL Server Setup](#sql-server-setup)
   - [Two-Tier Deployment](#two-tier-deployment)
-    - [Database Deployment](#database-deployment)
-    - [Application Deployment](#application-deployment)
+    - [SQL Server Setup](#sql-server-setup)
+    - [Spring Application Deployment using Env](#spring-application-deployment-using-env)
 
 
 ## Note
@@ -128,8 +127,9 @@ fi
 # Restart Apache
 sudo systemctl reload apache2
 ```
+## Two-Tier Deployment
 
-## SQL Server Setup
+### SQL Server Setup
 The following code covers the installation of a MySQL server, the creation of a database, running a SQL file to extract the data and also the creation of a MySQL user so that other VMs may connect and access the database.
 
 ```
@@ -203,81 +203,9 @@ sudo mysql -e "SHOW DATABASES;"
 echo ""
 ```
 
-## Two-Tier Deployment
 
-### Database Deployment
-```
-#!/bin/bash
-
-# Update
-echo "Updating"
-sudo apt update -y
-echo "Updating: Done"
-echo ""
-
-# Upgrade
-echo "Upgrading"
-sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
-echo "Upgrading: Done"
-echo ""
-
-# Install MySQL
-echo "Installing MySQL Server"
-sudo DEBIAN_FRONTEND=noninteractive apt install mysql-server -y
-echo "Installation: Done"
-echo ""
-
-# Start MYSQL on boot
-echo "Enabling MySQL"
-sudo systemctl enable mysql
-echo "Enabling: Done"
-echo ""
-
-# Enable remote connections
-echo "Opening connections"
-sudo sed -i 's/^bind-address\s*=\s*127\.0\.0\.1/bind-address = 0.0\.0\.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
-echo "Connection setup: Done"
-echo ""
-
-# Restart MySQL
-echo "Restarting MySQL"
-sudo systemctl restart mysql.service
-echo "Restarting: Done"
-echo ""
-
-# Downloading app code
-echo "Downloading app code"
-sudo git clone https://github.com/Affiq/World_SQL_Database.git repo
-echo "Downloading: Done"
-echo ""
-
-# Create new user for VM to connect to
-echo "Creating new MySQL User"
-sudo mysql -e "CREATE USER 'root'@'%' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; FLUSH PRIVILEGES;"
-echo "User Creation: Done"
-echo ""
-
-# Create new database
-echo "Creating database"
-sudo mysql -u root -p'root' -h localhost -P 3306 -e "CREATE DATABASE world;"
-echo "Database creation done"
-echo ""
-
-# Extract SQL data
-echo "Extracting MySQL file"
-cd /repo
-sudo mysql -u root -p'root' -h localhost -P 3306 -D world < world.sql
-echo "Extraction: Done"
-echo ""
-
-# Show Databases
-echo "Showing Databases..."
-sudo mysql -e "SHOW DATABASES;"
-echo ""
-```
-
-### Application Deployment
-
+### Spring Application Deployment using Env
+The following code deals with installing a MySQL client, Maven and JDK17.
 ```
 #!/bin/bash
 
@@ -318,17 +246,16 @@ sudo DEBIAN_FRONTEND=noninteractive apt install openjdk-17-jdk -y
 echo "Installation: Done"
 echo ""
 
-# Cloning repository
+# Cloning repository - CHANGE ACCORDINGLY
 echo "Cloning app code"
 sudo git clone https://github.com/Affiq/World_Project_VM.git repo
 echo "Cloning: Done"
 echo ""
 
-# Set env variables
+# Set env variables - CHANGE ACCORDINGLY
 echo "Setting environment variables"
 cd /home/ubuntu
-# echo -e 'export DB_HOST="jdbc:mysql://52.49.119.169:3306/world"\nexport DB_USER="root"\nexport DB_PASS="root"' >> ~/.bashrc && source ~/.bashrc
-export DB_HOST=jdbc:mysql://172.31.40.217:3306/world
+export DB_HOST=jdbc:mysql://172.31.40.217:3306/world # CHANGE TO CORRECT IP
 export DB_PASS=root
 export DB_USER=root
 echo "Env variables set"
@@ -341,31 +268,4 @@ cd /repo
 sudo -E mvn package spring-boot:start
 echo "Server: Done"
 echo ""
-
-# OUR NEW CODE
-# Nav back to root
-cd /
-
-# Install Apache2
-sudo DEBIAN_FRONTEND=noninteractive apt install apache2 -y
-
-# Enable relevant apache proxy modules
-sudo a2enmod proxy
-sudo a2enmod proxy_http
-
-# Restart Apache 
-sudo systemctl restart apache2 
-
-# Edit config file if not configured
-if grep -q 'ProxyPass / http://localhost:5000/' /etc/apache2/sites-available/000-default.conf; then
-    # The string exists, so nothing to do
-    echo "Reverse proxy already configured."
-else
-    # reverse proxy not configured yet
-    echo "Reverse proxy NOT configured."
-    sudo sed -i '/DocumentRoot \/var\/www\/html/ a\ProxyPreserveHost On\nProxyPass \/ http:\/\/localhost:5000\/\nProxyPassReverse \/ http:\/\/localhost:5000\/\n' /etc/apache2/sites-available/000-default.conf
-fi
-
-# Restart Apache
-sudo systemctl reload apache2
 ```

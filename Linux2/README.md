@@ -48,6 +48,10 @@ We would like to learn about how to make a BASH script, as well as making a samp
 
 ```
 ### Response
+* We will need a command to install the nginx webserver.
+
+![Alt text](BASHScriptSnippet.PNG)
+
 * Once we have tested and defined our shell program is fully functional, we can also observe that our program is not very feedback friendly. The use of well placed echo commands can notify the end user of some input. Making space of blank line echos can also help chunk particular command responses. Colours can also help indicate behaviour of the file. This helps us produce our final shell which looks like this.
 
 ```
@@ -105,6 +109,7 @@ Screenshot
 * TTY: Tele-TypeWriter - linked terminal/interface. User Processes are typically linked to a terminal (TTY) while System Processes are not.
 * CMD: Relevant command linked with the process.
   
+  ![Alt text](PSCommandScreenshot.PNG)
 
 ## Process Commands
 * ```ps aux``` Extremely detailed

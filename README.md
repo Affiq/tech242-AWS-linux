@@ -59,9 +59,8 @@ Commands:
 
 ## Using AWS
 * [Learn how to create a VM](CreatingAVM)
-* Starting and Stopping Virtual Machines
+* [Starting, Stopping & Terminating VMs](StartStopVM)
 * Connecting to a Virtual Machine
-* Changes in Local IP Address
 * Removing AMIs
 
 ## Using Linux
@@ -70,7 +69,7 @@ Commands:
 * [File ownership & management](FileOwnership&Management)
 * [File transfer & Automating Java App Deployment](Linux3)
 * [Reverse Proxying](ReverseProxySetup/README.md)
-* Two Tier Deployment
+* [Two-Tier Deployment](TwoTierDeployment/README.md)
 
 ## Other
 * [Quickstart BASH Scripts](QuickstartBash/README.md)
