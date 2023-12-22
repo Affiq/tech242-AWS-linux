@@ -250,7 +250,7 @@ sudo systemctl reload apache2
 ```
 
 
-### Application AMI App Data
+### Application AMI and App Data
 
 ```
 #!/bin/bash
@@ -259,14 +259,14 @@ sudo systemctl reload apache2
 
 # Set env variables
 cd /home/ubuntu
-export DB_HOST=jdbc:mysql://172.31.52.3:3306/world
+export DB_HOST=jdbc:mysql://10.0.3.43:3306/world
 export DB_PASS=root
 export DB_USER=root
 
 # Starting Spring-Boot server
 echo "Starting Spring-Boot Server"
 cd /repo
-sudo -E mvn package spring-boot:start
+sudo -E mvn spring-boot:start
 echo "Server: Done"
 echo ""
 

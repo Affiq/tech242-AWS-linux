@@ -7,6 +7,7 @@
   - [SSH folder and .pem](#ssh-folder-and-pem)
   - [Using AWS](#using-aws)
   - [Using Linux](#using-linux)
+  - [AWS Advanced](#aws-advanced)
   - [Other](#other)
 
 ## Tools Used
@@ -70,6 +71,10 @@ Commands:
 * [File transfer & Automating Java App Deployment](Linux3)
 * [Reverse Proxying](ReverseProxySetup/README.md)
 * [Two-Tier Deployment](TwoTierDeployment/README.md)
+
+## AWS Advanced
+* [Virtual Private Clouds basics](VPCs/README.md)
+* [Creating a VPC with AWS](VPCCreate/README.md)
 
 ## Other
 * [Quickstart BASH Scripts](QuickstartBash/README.md)
