@@ -146,16 +146,53 @@ echo ""
 The AMI we have taken of our current system is created in such a way in that our application does not need to run any app data to function. This helps smooth the process significantly as now we may simply just create a VM based off our AMI with less manual setup.
 
 ## Manually Setting the Application Virtual Machine
+...
 
 ### Installing MySQLClient, Maven, JDK 17 and app code
+We will first need to install the relevant packages for our application to function - this would include Maven and JDK 17 for our standard Spring project, but we will also need a MySQL client to connect and communicate with the database virtual machine.
+
+```
+echo "Installing MySQL client"
+sudo DEBIAN_FRONTEND=noninteractive apt install mysql-client -y
+echo "Installation: Done"
+echo ""
+
+# Install Maven
+echo "Installing Maven"
+sudo DEBIAN_FRONTEND=noninteractive apt install maven -y
+echo "Installation: Done"
+echo ""
+
+# Install JDK17
+echo "Installing JDK17"
+sudo DEBIAN_FRONTEND=noninteractive apt install openjdk-17-jdk -y
+echo "Installation: Done"
+echo ""
+
+```
 
 ### Setting environment variables
+Our Spring project's application.properties file makes use of environment variables - we will need to configure these in our environment - more specifically the Ubuntu's env variables (this might differ for the app data and AMI phase). We can perform this with the following commands.
+
+```
+export DB_HOST=jdbc:mysql://172.31.40.217:3306/world
+export DB_PASS=root
+export DB_USER=root
+```
 
 ### Starting our Spring Application
+We will need to setup our application much like before. However, some build errors are caused and require the application recompile, as well as requiring the ubuntu's environment variables. When using a sudo command, this will need to be passed using a -E flag to use the current users environment variables rather than superuser's environment variables.
+
+```
+cd /repo
+sudo -E mvn package spring-boot:start
+```
 
 ### Setting up our Reverse Proxy
+Considering the similarities for setting up our project with our previous project using Apache2 reverse proxy, we can simply utilise the exact same code (command by command) to set up the reverse proxy.
 
 ### Application prov.sh (and app data)
+Combining with our final shell will then give us the following BASH script. We can test this in a BASH Script before being confident moving it into the User Data stage.
 
 ```
 #!/bin/bash
@@ -207,7 +244,7 @@ echo ""
 echo "Setting environment variables"
 cd /home/ubuntu
 # echo -e 'export DB_HOST="jdbc:mysql://52.49.119.169:3306/world"\nexport DB_USER="root"\nexport DB_PASS="root"' >> ~/.bashrc && source ~/.bashrc
-export DB_HOST=jdbc:mysql://172.31.40.217:3306/world
+export DB_HOST=jdbc:mysql://10.0.1.4:3306/world
 export DB_PASS=root
 export DB_USER=root
 echo "Env variables set"
