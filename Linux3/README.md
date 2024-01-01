@@ -1,5 +1,23 @@
 # File Transfer & Setting up a Java App
 
+- [File Transfer \& Setting up a Java App](#file-transfer--setting-up-a-java-app)
+  - [Goal:](#goal)
+  - [Note:](#note)
+  - [Transferring Files](#transferring-files)
+    - [SCP](#scp)
+  - [Setting up a Java App](#setting-up-a-java-app)
+    - [Manual User Input](#manual-user-input)
+    - [Updating and Upgrading](#updating-and-upgrading)
+    - [Installing Maven](#installing-maven)
+    - [Final Script](#final-script)
+  - [Lauching VMs using User Data](#lauching-vms-using-user-data)
+    - [Testing Strategy](#testing-strategy)
+  - [Launching VMs with AMI](#launching-vms-with-ami)
+    - [Instantiating through selected Image](#instantiating-through-selected-image)
+    - [Removing AMIs](#removing-amis)
+    - [Removing Associated Snapshots](#removing-associated-snapshots)
+
+
 ## Goal:
 We would like to run a Spring Boot Application in our Virtual Machine, which can be accessed remotely through a number of machines using a web-browser. This document will highlight how we can transfer files to our Virtual Machine using Secure Copy or Git Clone. This document will also highlight the automation of starting the server through a BASH script, through User Data configuration in AWS, and finally speeding up efficiency by using Amazon Machine Images.
 
@@ -92,6 +110,9 @@ mvn spring-boot:start
 * Code inserted here will execute once the VM starts running, and only once.
 * Code that is inserted here will begin in the root directory ```/``` rather than the home directory ```/root/users/ubuntu```
 * Code executed here will by default be with root, and so can be visualised as ```sudo <your command>```
+* Code here should follow a BASH like syntax (so don't forget the **shebang!**)
+
+![Alt text](UserData.PNG)
 
 ### Testing Strategy
 * It is difficult to validate whether a standard BASH script that is able to function is able to run in the user data section. However some steps can be taken to ensure this.
@@ -144,11 +165,27 @@ mvn spring-boot:start
 ```
 
 ## Launching VMs with AMI
+An Amazon Machine Image is a capture of the disk during a certain point in time whilst the Virtual Machine is running and can be used to launch other VMs with the same files and dependencies without the need for installation/updating. 
+
 Once you have a running AMI with all the dependencies installed, a snapshot can be taken to have an AMI with all the dependencies installed. This can considerably boost the time of automation as this means the program does not need to run commands related to updating, upgrading, cloning folders and package installation (in our case we circumvent Java & Maven Installation, as well as Git cloning).
 However this does mean we will need to still run the commands related to running our Spring Boot application.
 
-SNAPSHOT INSTRUCTIONS
+To create an AMI of a running Virtual Machine, simply head to the EC2 console and select the target VM (ensuring that it is running). Once done, click the Actions button and head to 
+```Actions > Image and Templates > Create Image```. After giving it appropriate names and tags. the image should then be created.
+
+![Alt text](AMICapture.PNG)
 
 ### Instantiating through selected Image
+Navigate to the lefthand-side of the EC2 tabs and go to ```Images > AMI``` and search for your created image (using the filtering system and the appropriate tag you created). Once selected, simply click the ```Launch instance from AMI``` button. Once done, simply follow the regular configuration process (naming, security groups, etc) but with two exceptions:
+* **Image Selection** - as we have selected the AMI itself, we will not need to worry about selecting the right image as it will be done for us.
+* **User Data** - as mentioned before, we do not need to deal with specific commands when we have an AMI with expected dependencies and so some thought will be needed for this section. For this project specifically, we will only need to use commands related to start the spring boot server and to configure our reverse proxy.
 
-### Instantiating by selecting AMI
+![Alt text](LaunchAMI.PNG)
+
+### Removing AMIs
+Given that we are completely finished with a project, we will need to delete an AMI and all its related snapshots as they may persist, after the deletion of our associated VMs. First, head to the AMI tab again and select the associated AMI to delete. After doing so head to the button ```Actions > Deregister AMI```. You will then be presented with a dialogue with a togglable block to ```Delete Associated Snapshots```. Click this and make a note of the associated snapshots before Deregistering the AMIs.
+
+![Alt text](AssociatedSnapshots.PNG)
+
+### Removing Associated Snapshots
+Simply head to the tab ```Elastic Blockstore Volume > Snapshots``` and search for the noted snapshot. Simply click the button ```Actions > Delete Snapshot``` where the process itself should be trivial.

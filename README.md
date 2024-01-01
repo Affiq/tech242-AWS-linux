@@ -53,7 +53,7 @@ Commands:
 ## All about Cloud
 * [Learn Core Cloud Concepts](WhatIsCloud)
 * [Learn Basic of AWS](AWS)
-* Cloud Architecture
+* [Cloud Architecture](CloudArchitecture/README.md)
 
 ## SSH folder and .pem
 * [Learn how to store .pem](StoringSSH)
@@ -62,13 +62,12 @@ Commands:
 * [Learn how to create a VM](CreatingAVM)
 * [Starting, Stopping & Terminating VMs](StartStopVM)
 * [Connecting to a VM](ConnectingToVM)
-* Removing AMIs
 
 ## Using Linux
 * [Navigation and Basics](Linux)
 * [BASH Scripting and Processes](Linux2)
 * [File ownership & management](FileOwnership&Management)
-* [File transfer & Automating Java App Deployment](Linux3)
+* [File transfer & Automating Java App Deployment (User Data & AMI)](Linux3)
 * [Reverse Proxying](ReverseProxySetup/README.md)
 * [Two-Tier Deployment](TwoTierDeployment/README.md)
 
