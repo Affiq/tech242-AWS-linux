@@ -18,24 +18,46 @@ We will then use ```aws configure``` and enter the corresponding details from ab
 ## S3 Bucket Commands
 ```aws s3 help``` Lists all available aws s3 commands
 
+#### Create bucket command
+
 ```aws s3 mb s3://<bucket-name>``` To create a bucket
+
+#### List commands
 
 ```aws s3 ls``` List all buckets in organisations S3
 
 ```aws s3 ls s3://<bucket-name> ``` List all files in a bucket
 
+#### Copy commands
+
 ```aws s3 cp <filename> s3://<bucket-name>``` Copy file into a bucket
 
-```aws s3 rm s3://<bucket-name-file-path>``` Delete file from bucket
+```aws s3 cp s3://<bucket-name> <target-location>``` Copy bucket file into target location
+
+```aws s3 sync s3://<bucket-name>``` Sync current folder with bucket (make all files up to date), typically needs to be done in an empty folder to avoid accidentally uploading accidental files.
+
+
+#### Remove commands
+```aws s3 rm s3://<bucket-name>/<file-name>``` Delete file from bucket
 
 ```aws s3 rb s3://tech242-affiq-first-bucket``` Remove a bucket (provided it is empty)
-```aws s3 rb s3://tech242-affiq-first-bucket --force``` Remove a bucket and all files inside
+
+```aws s3 rb s3://tech242-affiq-first-bucket --force``` Remove a bucket and all files inside (**USE WITH CAUTION**)
 
 ## Make S3-File Public
+Steps 1 and 2 need only to be performed once - if public access is already allowed alongside ACL, simply follow Step 3. 
 Go to S3 console and navigate to your bucket.
-1. Go to Permissions and change public access
+![Alt text](S3-Navigation.PNG)
+
+1. Go to Permissions and turn "block public access" off to the following configuration
+   
+![Alt text](BlockAccessEditbutton.PNG)
+![Alt text](PublicAccessConfig.PNG)
+
 2. Go to Permissions and Enable ACL
 3. Navigate to Objects and click the checkbox for <File-To-Publicise> and select ```Actions > Make Public Using ACL```
+
+![Alt text](ObjectMakePublicACL.PNG)
 
 
 
