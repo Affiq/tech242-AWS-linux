@@ -59,5 +59,15 @@ Go to S3 console and navigate to your bucket.
 
 ![Alt text](ObjectMakePublicACL.PNG)
 
+## Serving S3 Content from Spring Application
+Typically in a Spring Application that uses Thymeleaf (a framework for serving HTML pages), content will be stored under ```src/main/resources/templates/<file-name>```, and typically the HTML page will have image tags inside them such as ```<img src="images/scary_image.jpg">```. Given that we have a publicly accessible object, we can replace the src inside the tags directly to the s3 bucket file with the following format:
+
+```<img src= "https://<bucket-name>.s3.amazonaws.com/<file-name>" >```
+
+## Change Image BASH script
+
+### Goal:
+We would like to create a BASH script for our pre-existing json-vorhees application deployment. It should change the main image located in ```http://<public-vm-ip>/web/home``` to an image of our choice on S3.
+
 
 
