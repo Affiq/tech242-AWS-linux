@@ -75,6 +75,8 @@ Commands:
 * [Virtual Private Clouds basics](VPCs/README.md)
 * [Creating a VPC with AWS](VPCCreate/README.md)
 * [S3 Buckets](S3/README.md)
+* [Monitoring & Alert](MonitoringAlert/README.md)
+* 
 
 ## Other
 * [Quickstart BASH Scripts](QuickstartBash/README.md)
