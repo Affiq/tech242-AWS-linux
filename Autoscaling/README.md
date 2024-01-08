@@ -20,6 +20,7 @@
       - [Control Costs](#control-costs)
       - [Custom Behaviour](#custom-behaviour)
     - [Testing ASG Through Load Balancer](#testing-asg-through-load-balancer)
+  - [Deleting an Autoscaling Group](#deleting-an-autoscaling-group)
 
 ## Goals:
 To understand what an autoscaling group is, to create a Launch Template of our Jsonvorhees application, and then to create an Autoscaling group for our JsonV-App.
@@ -128,3 +129,7 @@ Achieve a balance between responsiveness and cost-efficiency with the Mixed Beha
 We will then need to navigate to our specific load balancer by finding it under ```Load Balancing > Load Balancer``` and filtering for our LB. Once selected, copy the ```DNS Name```.
 
 ![Alt text](TestLB.PNG)
+
+## Deleting an Autoscaling Group
+Attempting to terminate ASG instances will mean the ASG will create new instances, hence it may be wise to delete components in a certain order. The order things that should be terminated in are:
+```Load Balancer -> Target Group -> Autoscaling Group -> Launch Template```

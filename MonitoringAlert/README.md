@@ -76,3 +76,34 @@ Once you have created the dashboard, simply head over to your dashboard to view 
 Highlight over the graph/metric to be observed to reveal a full-screen button. Click that to obsevre the graph in more detail. The first selection box allows you to change the intervals for the measurement while the second selection allows you to change the observed time period of the X-axis.
 
 ![Alt text](CPUMetric.PNG)
+
+## Creating an Alarm
+
+First navigate to the Cloudwatch console, and go to ```Alarms > All Alarms``` and click ```Create Alarm```.
+
+![Alt text](AlarmNavigate.PNG)
+![Alt text](AlarmCreateButton.PNG)
+
+Next, we will have to select a specific metric to monitor the state of. In this case, we can speed up by filtering for ec2 and cpu, and we can then select Cpuutilization under per instance.
+
+![Alt text](SelectMetric.PNG)
+
+We will also need to change our instance ID for our alarm.
+
+![Alt text](ChangeAlarmInstanceID.PNG)
+
+We will then need to specify some specific conditions. We will create a static threshold of 15% for CPU utilization.
+
+![Alt text](AlarmConditions.PNG)
+
+We can then choose to select an existing topic or create a new topic, which functions a bit like a mailing list.
+
+![Alt text](CreateNotification.PNG)
+
+Once the alarm is created, we will then need to confirm our subscription to the alarm before testing our alarm by overloading the system.
+
+![Alt text](ConfirmSubscriptionEmail.PNG)
+
+After overloading the system (which can be confirmed via the cloudwatch dashboard) we should then recieve a notification from the alarm.
+
+![Alt text](NotificationEmail.PNG)
