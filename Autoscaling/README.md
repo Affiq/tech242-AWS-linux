@@ -1,9 +1,11 @@
 # Autoscaling Groups
 
 - [Autoscaling Groups](#autoscaling-groups)
-    - [Create a VM and an AMI](#create-a-vm-and-an-ami)
-  - [Creating a Launch Template](#creating-a-launch-template)
-  - [Testing our Launch Template](#testing-our-launch-template)
+  - [Goals:](#goals)
+  - [What is an Autoscaling Group?](#what-is-an-autoscaling-group)
+  - [Create a VM and an AMI](#create-a-vm-and-an-ami)
+    - [Creating a Launch Template](#creating-a-launch-template)
+    - [Testing our Launch Template](#testing-our-launch-template)
   - [Creating an Autoscaling Group](#creating-an-autoscaling-group)
     - [Availability Zones \& Subnets](#availability-zones--subnets)
     - [Health Checks](#health-checks)
@@ -17,19 +19,23 @@
       - [Prioritize Availability](#prioritize-availability)
       - [Control Costs](#control-costs)
       - [Custom Behaviour](#custom-behaviour)
-  - [Testing ASG Through Load Balancer](#testing-asg-through-load-balancer)
+    - [Testing ASG Through Load Balancer](#testing-asg-through-load-balancer)
 
+## Goals:
+To understand what an autoscaling group is, to create a Launch Template of our Jsonvorhees application, and then to create an Autoscaling group for our JsonV-App.
+
+## What is an Autoscaling Group?
 
 ![Alt text](ASGDiagram.drawio.png)
 
 An AWS Auto Scaling Group is a fundamental component of Amazon Web Services (AWS) that enables the automatic adjustment of the number of instances in a group to maintain application availability and optimize performance. This dynamic scaling capability is crucial for responding to changes in demand, allowing you to seamlessly scale resources up during traffic spikes and down during periods of reduced activity. By defining policies and setting parameters, such as desired capacity and health checks, the Auto Scaling Group automates the provisioning and termination of instances, ensuring your application's capacity aligns with the current workload. This scalability feature enhances system resilience, cost-efficiency, and responsiveness in cloud environments. 
 
-### Create a VM and an AMI
+## Create a VM and an AMI
 We will need to successfully try and create our target application inside a VM using an AMI and App Data. It is important to follow the normal process of testing the application at each automation stage, and so we will obtain:
 * An AMI used to create our application
 * App Data used to launch our application
 
-## Creating a Launch Template
+### Creating a Launch Template
 Navigate to ```EC2 > Launch Templates``` and click the ```Create Launch Template``` button.
 
 Follow the same rules as you would do to create an instance from an AMI. Namely we will need to fill out:
@@ -52,7 +58,7 @@ We can **ignore**:
 ![Alt text](CreateLaunchTemplate5.PNG)
 ![Alt text](CreateLaunchTemplate6.PNG)
 
-## Testing our Launch Template
+### Testing our Launch Template
 To test whether or not our Launch Template has the right configurations, checkbox the template to test and then under ```EC2 > Launch Templates``` and click the button ```Actions > Launch instance from template```.
 
 ![Alt text](LaunchInstanceFromTemplate.PNG)
@@ -118,7 +124,7 @@ Achieve a balance between responsiveness and cost-efficiency with the Mixed Beha
 ![Alt text](CreateASG8.PNG)
 ![Alt text](CreateASG9.PNG)
 
-## Testing ASG Through Load Balancer
+### Testing ASG Through Load Balancer
 We will then need to navigate to our specific load balancer by finding it under ```Load Balancing > Load Balancer``` and filtering for our LB. Once selected, copy the ```DNS Name```.
 
 ![Alt text](TestLB.PNG)
