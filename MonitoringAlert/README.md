@@ -49,13 +49,16 @@ Need some form of testing to determine a 'critical point' for CPU usage - this i
 ![Alt text](MonitoringAutomationLevels.drawio.png)
 
 #### No monitoring
-Risk of CPU being overloaded, and the machine falling over.
+Risk of CPU being overloaded, and the machine falling over as traffic/load increases.
 
 #### Manual Monitoring (Dashboard)
-Need a person watching the dashboard
+Need a person manually monitoring the dashboard - can be susceptible to spikes in traffic if monitoring is not constant.
 
-#### Alert Monitoring ()
-Automated alarm at a certain threshold, but response is manual.
+#### Alert Monitoring
+Automated alarm at a certain threshold, but response is manual. This is somewhat good, but requires a certain level of manual response, and can be unsuitable for international response teams as differing timezones means that manual response can be untimely.
+
+### Autoscaling
+Automated monitoring and response.
 
 ## Setting up Monitoring for EC2 Instance
 
