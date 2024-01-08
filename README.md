@@ -76,7 +76,7 @@ Commands:
 * [Creating a VPC with AWS](VPCCreate/README.md)
 * [S3 Buckets](S3/README.md)
 * [Monitoring & Alert](MonitoringAlert/README.md)
-* 
+* [Autoscaling Groups](Autoscaling)
 
 ## Other
 * [Quickstart BASH Scripts](QuickstartBash/README.md)

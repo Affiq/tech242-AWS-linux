@@ -46,6 +46,8 @@ Need some form of testing to determine a 'critical point' for CPU usage - this i
 
 ## Monitoring scenarios (worse to highest)
 
+![Alt text](MonitoringAutomationLevels.drawio.png)
+
 #### No monitoring
 Risk of CPU being overloaded, and the machine falling over.
 
