@@ -106,4 +106,5 @@ Once the alarm is created, we will then need to confirm our subscription to the 
 
 After overloading the system (which can be confirmed via the cloudwatch dashboard) we should then recieve a notification from the alarm.
 
+![Alt text](CloudwatchDashboard.PNG)
 ![Alt text](NotificationEmail.PNG)
