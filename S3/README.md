@@ -69,5 +69,108 @@ Typically in a Spring Application that uses Thymeleaf (a framework for serving H
 ### Goal:
 We would like to create a BASH script for our pre-existing json-vorhees application deployment. It should change the main image located in ```http://<public-vm-ip>/web/home``` to an image of our choice on S3.
 
+We will first need to create a new bucket, turn off block access and download the image.
+
+```
+#!/bin/bash
+
+# Create bucket
+aws s3 mb s3://tech242-affiq-first-bucket
+
+# Turn 'block access' off
+aws s3api delete-public-access-block --bucket "tech242-affiq-first-bucket"
+
+# Download scary cat image
+wget -O scary_cat.jpg "https://s.yimg.com/ny/api/res/1.2/s4ZKTjCoae.sHWtfXJwgyw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyOA--/https://media.zenfs.com/en/buzzfeed_articles_778/21a377cf0b3f1b5df6d9d5b98e8ec12b"
+```
+
+We would then need to upload to the bucket, and then change the policy from there.
+
+```
+# Upload to bucket without ACL
+aws s3 cp scary_cat.jpg s3://tech242-affiq-first-bucket
+
+# Change bucket policy
+aws s3api put-bucket-policy --bucket tech242-affiq-first-bucket --policy '{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::tech242-affiq-first-bucket/*"
+        }
+    ]
+}'
+
+# Enable ACL
+# aws s3api put-object-acl --bucket tech242-affiq-first-bucket --key scary-cat.jpg --acl public-read
+
+```
+
+We will then need to remove the image, change to the right directory and use the sed command to change the src of the image.
+
+```
+
+# Delete downloaded image
+rm scary_cat.jpg
+
+# Cd into right directory
+cd /tech242-jsonvorhees-app/jsonvoorhees-java-atlas-app/springapi
+
+# Change home.html 
+sudo sed -i 's#src="/images/friday13th.jpg"#src="https://tech242-affiq-first-bucket.s3.amazonaws.com/scary_cat.jpg"#' /tech242-jsonvorhees-app/jsonvoorhees-java-atlas-app/springapi/src/main/resources/templates/home.html
+
+# Repackage app (and run if necessary)
+if curl http://localhost:80 | grep -q "Unavailable"; then
+    echo "The word 'Unavailable' is present in the output: App not running"
+    # Repackage maven file
+    sudo mvn package spring-boot:start
+else
+    echo "The word 'Unavailable' is not present in the outpu: App is running."
+    # Repackage maven file
+    sudo mvn package
+fi
+
+```
+
+## Remove Image Bash Script
+
+We will first revert the image in the home.html file before repackaging in Maven.
+
+```
+
+#!/bin/bash
+
+# Replace the URL in your HTML file
+sudo sed -i 's#src="https://tech242-affiq-first-bucket.s3.amazonaws.com/scary_cat.jpg"#src="/images/friday13th.jpg"#' /tech242-jsonvorhees-app/jsonvoorhees-java-atlas-app/springapi/src/main/resources/templates/home.html
+
+# Repackage maven file
+# Cd into right directory
+cd /tech242-jsonvorhees-app/jsonvoorhees-java-atlas-app/springapi
+
+# Repackage app (and run if necessary)
+if curl http://localhost:80 | grep -q "Unavailable"; then
+    echo "The word 'Unavailable' is present in the output: App not running"
+    # Repackage maven file
+    sudo mvn package spring-boot:start
+else
+    echo "The word 'Unavailable' is not present in the output: App is running."
+    # Repackage maven file
+    sudo mvn package
+fi
+```
+
+We will then remove the image from the bucket before removing the bucket itself.
+
+```
+# Remove image from bucket
+aws s3 rm s3://tech242-affiq-first-bucket/scary_cat.jpg
+
+# Remove bucket
+aws s3 rb s3://tech242-affiq-first-bucket
+
+```
+
 
 

@@ -188,4 +188,4 @@ Given that we are completely finished with a project, we will need to delete an 
 ![Alt text](AssociatedSnapshots.PNG)
 
 ### Removing Associated Snapshots
-Simply head to the tab ```Elastic Blockstore Volume > Snapshots``` and search for the noted snapshot. Simply click the button ```Actions > Delete Snapshot``` where the process itself should be trivial.
+Simply head to the tab ```Elastic Blockstore Volume > Snapshots``` and search for the noted snapshot. Simply click the button ```Actions > Delete Snapshot``` where the process itself should be simple.

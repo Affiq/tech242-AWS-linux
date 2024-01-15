@@ -146,7 +146,6 @@ echo ""
 The AMI we have taken of our current system is created in such a way in that our application does not need to run any app data to function. This helps smooth the process significantly as now we may simply just create a VM based off our AMI with less manual setup.
 
 ## Manually Setting the Application Virtual Machine
-...
 
 ### Installing MySQLClient, Maven, JDK 17 and app code
 We will first need to install the relevant packages for our application to function - this would include Maven and JDK 17 for our standard Spring project, but we will also need a MySQL client to connect and communicate with the database virtual machine.
